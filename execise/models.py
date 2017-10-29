@@ -125,6 +125,14 @@ class Sim(models.Model):
 
 
 class Solution(models.Model):
+
+    SYNTAX_CHOICES = (
+        (0, 'C'),
+        (1, 'C++'),
+        (2, 'Java'),
+        (6, 'Python'),
+        )
+
     solution_id = models.AutoField(primary_key=True)
     problem_id = models.IntegerField()
     user_id = models.CharField(max_length=48)
@@ -132,7 +140,7 @@ class Solution(models.Model):
     memory = models.IntegerField()
     in_date = models.DateTimeField()
     result = models.SmallIntegerField()
-    language = models.IntegerField()
+    language = models.IntegerField(choices=SYNTAX_CHOICES)
     ip = models.CharField(max_length=46)
     contest_id = models.IntegerField(blank=True, null=True)
     valid = models.IntegerField()

@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>详情</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-<h1>Welcome {{ nick }}</h1>
-<h1>SolutionEdtail:<h1>
-<h2>{{ solution_id }}</h2>
-<br>
-<code>{{ error }}</code>
-<br>
-<a href="http://localhost:8000/login/">登陆</a>
-</body>
-</html>
+{% block title %}提交详情{% endblock %}
+
+{% block content %}
+
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">错误信息</h3>
+    </div>
+    <div class="panel-body">
+      {{ error }}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

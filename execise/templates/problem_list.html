@@ -1,48 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>列表</title>
-    <script type="text/javascript">
-    function getCookie(c_name)
-    {
-    if(document.cookie.length>0){
-      c_start=document.cookie.indexOf(c_name+"=")
-      if(c_start!=-1){
-        c_start=c_start+c_name.length+1;
-        c_end=document.cookie.indexOf(";", c_start);
-        if(c_end==-1) c_end=document.cookie.length;
-        return unescape(document.cookie.substring(c_start, c_end))
-      }
-    }
-    return "";
-    }
-    </script>
-</head>
+{% extends "base.html" %}
 
-<body>
-<h1>Welcome {{ nick }}</h1>
-<div id="user"></div>
-<script type="text/javascript">
-var cookie = {
-    get:function(str){
-        var cookies = {};
-        document.cookies.split(';').forEach(function(item){
-           var c = item.split('=');
-           cookies[c[0]]=c[1];
-       });
-       return cookies[str] || "";
-    }
-}
-document.querySelector("#user").innerHTML = getCookie("nick");
-</script>
-<h1>列表显示：</h1>
-<ul>
+{% block title %}问题列表{% endblock %}
+
+{% block content %}
+
+<div class="col-md-8" data-example-id="striped-table">
+<h1>问题列表:</h1>
+<table class="table table-string">
+  <caption>问题列表</caption>
+  <thead>
+    <tr>
+      <th>题目编号</th>
+      <th>标题</th>
+      <th>发布时间</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for problem in object_list %}
-        <li><a href="{% url 'problemDetail' problem.problem_id %}"</a>{{ problem.problem_id }}</li>
+      <tr>
+        <td><a href="{% url 'problemDetail' problem.problem_id %}">{{ problem.problem_id }}</a></td>
+        <td>{{ problem.title }}</td>
+        <td>{{ problem.in_date }}</td>
+      </tr>
     {% endfor %}
-<br>
-<a href="http://localhost:8000/login/">登陆</a>
-</body>
-</html>
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

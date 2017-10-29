@@ -1,22 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>详情</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-<h1>Welcome {{ nick }}</h1>
-<h1>问题详情：</h1>
-<h2>{{ problem_title }}</h2>
-<br>
-<form action="" method="POST">
-{% csrf_token %}
-<span class="form">
-source:{{ sourceForm.source }}
-<input type="submit" name="submit" value="submit" id="submit"><br>
-</form>
-<a href="http://localhost:8000/login/">登陆</a>
-</body>
-</html>
+{% block title %}问题详情{% endblock %}
+
+{% block content %}
+<div class="text-center">
+  <h2>问题详情：</h2>
+  <p>{{ problem_title }}</p>
+  <form action="" method="POST">
+    {% csrf_token %}
+      <div class="input-group-md text-center">
+      {{ solutionForm.language }}
+      <br>
+      {{ sourceForm.source }}
+      </div>
+    <input type="submit" name="submit" value="submit" id="submit"><br>
+  </form>
+</div>
+
+{% endblock %}
